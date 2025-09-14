@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><i class="fas fa-tachometer-alt me-2"></i>Sensor Dashboard</h1>
+            <div class="d-flex align-items-center gap-3">
+                <div class="d-flex align-items-center gap-2">
+                    <label for="refresh-rate-select" class="form-label mb-0 text-muted">
+                        <i class="fas fa-clock me-1"></i>Refresh Rate:
+                    </label>
+                    <select class="form-select form-select-sm" id="refresh-rate-select" style="width: auto;">
+                        <option value="1">1 second</option>
+                        <option value="5">5 seconds</option>
+                        <option value="10">10 seconds</option>
+                        <option value="20">20 seconds</option>
+                        <option value="30" selected>30 seconds</option>
+                        <option value="45">45 seconds</option>
+                        <option value="60">1 minute</option>
+                        <option value="300">5 minutes</option>
+                        <option value="600">10 minutes</option>
+                    </select>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <label for="unit-select" class="form-label mb-0 text-muted">
+                        <i class="fas fa-ruler me-1"></i>Units:
+                    </label>
+                    <select class="form-select form-select-sm" id="unit-select" style="width: auto;">
+                        <option value="metric" selected>Metric (°C, hPa)</option>
+                        <option value="imperial">Imperial (°F, inHg)</option>
+                    </select>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <label for="timezone-select" class="form-label mb-0 text-muted">
+                        <i class="fas fa-globe me-1"></i>Timezone:
+                    </label>
+                    <select class="form-select form-select-sm" id="timezone-select" style="width: auto;">
+                        <option value="local" selected>Local Time</option>
+                        <option value="UTC">UTC</option>
+                        <option value="America/New_York">Eastern (EST/EDT)</option>
+                        <option value="America/Chicago">Central (CST/CDT)</option>
+                        <option value="America/Denver">Mountain (MST/MDT)</option>
+                        <option value="America/Los_Angeles">Pacific (PST/PDT)</option>
+                        <option value="Europe/London">London (GMT/BST)</option>
+                        <option value="Europe/Paris">Paris (CET/CEST)</option>
+                        <option value="Asia/Tokyo">Tokyo (JST)</option>
+                        <option value="Asia/Shanghai">Shanghai (CST)</option>
+                        <option value="Australia/Sydney">Sydney (AEDT/AEST)</option>
+                    </select>
+                </div>
+                <small class="text-muted" id="last-refresh-time">
+                    Auto-refresh: <span id="refresh-rate-display">30s</span> | 
+                    Last refresh: <span id="refresh-timestamp">Loading...</span> |
+                    <i class="fas fa-info-circle" title="Times shown in local timezone. Data stored in UTC for accuracy."></i>
+                    Local time display
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- System Status Cards -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Total Sensors</h5>
+                        <h3 class="mb-0">{{ sensors|length }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-microchip fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Active Sensors</h5>
+                        <h3 class="mb-0">{{ sensors|selectattr('status', 'equalto', 'active')|list|length }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-check-circle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Error Sensors</h5>
+                        <h3 class="mb-0">{{ sensors|selectattr('status', 'equalto', 'error')|list|length }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-exclamation-triangle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-secondary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h5 class="card-title">Unavailable</h5>
+                        <h3 class="mb-0">{{ sensors|selectattr('status', 'equalto', 'unavailable')|list|length }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-times-circle fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sensor Cards -->
+<div class="row">
+    {% for sensor in sensors %}
+    <div class="col-lg-6 col-xl-4 mb-4">
+        <div class="card h-100 sensor-card" data-sensor-id="{{ sensor.id }}">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    {% if sensor.sensor_type == 'ltr329' %}
+                        <i class="fas fa-lightbulb me-2"></i>
+                    {% elif sensor.sensor_type == 'bme280' %}
+                        <i class="fas fa-thermometer-half me-2"></i>
+                    {% else %}
+                        <i class="fas fa-microchip me-2"></i>
+                    {% endif %}
+                    {{ sensor.name or sensor.id }}
+                </h5>
+                <span class="badge bg-{{ 'success' if sensor.status == 'active' else 'danger' if sensor.status == 'error' else 'secondary' }}">
+                    {{ sensor.status|title }}
+                </span>
+            </div>
+            
+            <div class="card-body">
+                <div class="sensor-info mb-3">
+                    <small class="text-muted">
+                        <strong>Type:</strong> {{ sensor.sensor_type }}<br>
+                        <strong>Location:</strong> {{ sensor.location or 'Not specified' }}<br>
+                        <strong>Last Updated:</strong> 
+                        <span class="last-update" data-timestamp="{{ sensor.last_reading_time }}">
+                            {% if sensor.last_reading_time %}
+                                Loading...
+                            {% else %}
+                                Never
+                            {% endif %}
+                        </span>
+                    </small>
+                </div>
+                
+                <!-- Recent Reading Data -->
+                <div class="sensor-data">
+                    {% if sensor.id in recent_readings %}
+                        {% set reading = recent_readings[sensor.id] %}
+                        {% if reading.data %}
+                            <!-- Data will be populated by JavaScript for unit conversion support -->
+                            <div class="text-center py-3">
+                                <i class="fas fa-spinner fa-spin text-muted"></i>
+                                <p class="text-muted mb-0">Loading sensor data...</p>
+                            </div>
+                            <!-- Store raw data for JavaScript -->
+                            <script type="application/json" class="sensor-raw-data">{{ reading.data|tojson }}</script>
+                        {% endif %}
+                    {% else %}
+                        <div class="text-center py-3">
+                            <i class="fas fa-exclamation-circle text-muted fa-2x mb-2"></i>
+                            <p class="text-muted mb-0">No recent data available</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <div class="d-flex justify-content-center">
+                    <a href="{{ url_for('main.sensor_detail', sensor_id=sensor.id) }}" 
+                       class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-chart-line me-1"></i>View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    
+    {% if not sensors %}
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-exclamation-circle text-muted fa-3x mb-3"></i>
+                <h4 class="text-muted">No sensors configured</h4>
+                <p class="text-muted">
+                    No sensors are currently registered in the system. 
+                    Check your sensor configuration and ensure sensors are properly connected.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<!-- Main.js handles all refresh and timestamp functionality -->
+{% endblock %}

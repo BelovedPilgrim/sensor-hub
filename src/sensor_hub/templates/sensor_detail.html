@@ -1,0 +1,747 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin-bottom: 2rem;
+}
+
+.chart-container h6 {
+    color: #495057;
+    font-weight: 600;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+#tempHumidityChart, #pressureChart {
+    max-height: 350px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>
+                <i class="fas fa-microchip me-2"></i>
+                {{ sensor.name or sensor.id }}
+            </h1>
+            <div>
+                <a href="{{ url_for('main.index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sensor Info Card -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>Sensor Information</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <td><strong>ID:</strong></td>
+                        <td>{{ sensor.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Type:</strong></td>
+                        <td>{{ sensor.sensor_type }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Status:</strong></td>
+                        <td>
+                            <span class="badge bg-{{ 'success' if sensor.status == 'active' else 'danger' if sensor.status == 'error' else 'secondary' }}">
+                                {{ sensor.status|title }}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Location:</strong></td>
+                        <td>{{ sensor.location or 'Not specified' }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Description:</strong></td>
+                        <td>{{ sensor.description or 'No description' }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Last Reading:</strong></td>
+                        <td>
+                            {% if sensor.last_reading_at %}
+                                {{ sensor.last_reading_at.strftime('%Y-%m-%d %H:%M:%S UTC') }}
+                            {% else %}
+                                Never
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-cogs me-2"></i>Configuration</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    {% if sensor.gpio_pin %}
+                    <tr>
+                        <td><strong>GPIO Pin:</strong></td>
+                        <td>{{ sensor.gpio_pin }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if sensor.i2c_address %}
+                    <tr>
+                        <td><strong>I2C Address:</strong></td>
+                        <td>0x{{ "%02x"|format(sensor.i2c_address) }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td><strong>Poll Interval:</strong></td>
+                        <td>{{ sensor.poll_interval }} seconds</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Enabled:</strong></td>
+                        <td>{{ 'Yes' if sensor.enabled else 'No' }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Error Count:</strong></td>
+                        <td>{{ sensor.error_count }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Data Visualization -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="fas fa-chart-line me-2"></i>Sensor Data
+                    <small class="text-muted ms-2">
+                        <i class="fas fa-info-circle" title="Data stored in UTC, displayed in selected timezone"></i>
+                        Timezone-aware display
+                    </small>
+                </h5>
+                <div class="d-flex gap-3 align-items-center">
+                    <!-- Units Selector -->
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="unit-select" class="form-label mb-0 text-muted small">
+                            <i class="fas fa-ruler me-1"></i>Units:
+                        </label>
+                        <select class="form-select form-select-sm" id="unit-select" style="width: auto;">
+                            <option value="metric" selected>Metric (°C, hPa)</option>
+                            <option value="imperial">Imperial (°F, inHg)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Timezone Selector -->
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="timezone-select" class="form-label mb-0 text-muted small">
+                            <i class="fas fa-globe me-1"></i>Timezone:
+                        </label>
+                        <select class="form-select form-select-sm" id="timezone-select" style="width: auto;">
+                            <option value="local" selected>Local Time</option>
+                            <option value="UTC">UTC</option>
+                            <option value="America/New_York">Eastern (EST/EDT)</option>
+                            <option value="America/Chicago">Central (CST/CDT)</option>
+                            <option value="America/Denver">Mountain (MST/MDT)</option>
+                            <option value="America/Los_Angeles">Pacific (PST/PDT)</option>
+                            <option value="Europe/London">London (GMT/BST)</option>
+                            <option value="Europe/Paris">Paris (CET/CEST)</option>
+                            <option value="Asia/Tokyo">Tokyo (JST)</option>
+                            <option value="Asia/Shanghai">Shanghai (CST)</option>
+                            <option value="Australia/Sydney">Sydney (AEDT/AEST)</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Time Range Selector -->
+                    <div class="d-flex align-items-center gap-2">
+                        <label for="time-range-select" class="form-label mb-0 text-muted small">
+                            <i class="fas fa-clock me-1"></i>Range:
+                        </label>
+                        <select class="form-select form-select-sm" id="time-range-select" onchange="updateTimeRange(this.value)">
+                            <option value="1" {{ 'selected' if hours == 1 }}>Last Hour</option>
+                            <option value="6" {{ 'selected' if hours == 6 }}>Last 6 Hours</option>
+                            <option value="24" {{ 'selected' if hours == 24 }}>Last 24 Hours</option>
+                            <option value="168" {{ 'selected' if hours == 168 }}>Last Week</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                {% if readings %}
+                    <!-- Temperature & Humidity Chart -->
+                    <div class="chart-container mb-4">
+                        <h6 class="mb-3"><i class="fas fa-thermometer-half me-2"></i>Temperature & Humidity</h6>
+                        <canvas id="tempHumidityChart"></canvas>
+                    </div>
+                    
+                    <!-- Pressure Chart -->
+                    <div class="chart-container mb-4">
+                        <h6 class="mb-3"><i class="fas fa-gauge me-2"></i>Pressure</h6>
+                        <canvas id="pressureChart"></canvas>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    {% if readings[0].data %}
+                                        {% for key in readings[0].data.keys() %}
+                                            <th>{{ key.replace('_', ' ')|title }}</th>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for reading in readings[:50] %}
+                                <tr>
+                                    <td>
+                                        <span class="timestamp-utc" data-timestamp="{{ reading.timestamp.isoformat() }}">
+                                            {{ reading.timestamp.strftime('%Y-%m-%d %H:%M:%S') }} UTC
+                                        </span>
+                                    </td>
+                                    {% if reading.data %}
+                                        {% for key, value in reading.data.items() %}
+                                            <td>
+                                                {% if key == 'temperature' %}
+                                                    {{ "%.1f"|format(value) }}°C
+                                                {% elif key == 'humidity' %}
+                                                    {{ "%.1f"|format(value) }}%
+                                                {% elif key == 'pressure' %}
+                                                    {{ "%.1f"|format(value) }} hPa
+                                                {% elif key == 'dew_point' %}
+                                                    {{ "%.1f"|format(value) }}°C
+                                                {% else %}
+                                                    {{ value }}
+                                                {% endif %}
+                                            </td>
+                                        {% endfor %}
+                                    {% endif %}
+                                    <td>
+                                        <span class="badge bg-{{ 'success' if reading.status == 'active' else 'danger' }}">
+                                            {{ reading.status|title }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="text-center py-5">
+                        <i class="fas fa-chart-line text-muted fa-3x mb-3"></i>
+                        <h4 class="text-muted">No Data Available</h4>
+                        <p class="text-muted">No sensor readings found for the selected time period.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+function updateTimeRange(hours) {
+    const url = new URL(window.location);
+    url.searchParams.set('hours', hours);
+    window.location.href = url.toString();
+}
+
+// Global chart variables
+let tempHumidityChart = null;
+let pressureChart = null;
+let globalReadings = null;
+let globalSelectedUnits = 'metric';
+let globalSelectedTimezone = 'local';
+
+// Global utility functions
+function parseUTCTimestamp(timestamp) {
+    // If timestamp doesn't end with 'Z', assume it's UTC and add 'Z'
+    const utcTimestamp = timestamp.endsWith('Z') ? timestamp : timestamp + 'Z';
+    return new Date(utcTimestamp);
+}
+
+function formatTimestampInTimezone(timestamp, timezone) {
+    const date = parseUTCTimestamp(timestamp);
+    if (isNaN(date.getTime())) {
+        return 'Invalid time';
+    }
+    
+    if (timezone === 'local') {
+        return date.toLocaleString();
+    } else if (timezone === 'UTC') {
+        return date.toISOString().replace('T', ' ').replace('.000Z', ' UTC');
+    } else {
+        try {
+            return date.toLocaleString('en-US', {
+                timeZone: timezone,
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+        } catch (error) {
+            console.warn('Invalid timezone:', timezone);
+            return date.toLocaleString();
+        }
+    }
+}
+
+// Global unit conversion functions
+function convertTemperature(celsius, units) {
+    if (units === 'imperial') {
+        return (celsius * 9/5) + 32;
+    }
+    return celsius;
+}
+
+function convertPressure(hpa, units) {
+    if (units === 'imperial') {
+        return hpa * 0.02953; // hPa to inHg
+    }
+    return hpa;
+}
+
+function getTemperatureUnit(units) {
+    return units === 'imperial' ? '°F' : '°C';
+}
+
+function getPressureUnit(units) {
+    return units === 'imperial' ? 'inHg' : 'hPa';
+}
+
+// Chart initialization
+{% if readings_json %}
+document.addEventListener('DOMContentLoaded', function() {
+    // Prepare data for charts
+    const readings = {{ readings_json|tojson }};
+    globalReadings = readings;
+    
+    // Get selected units from main app or default to metric
+    function getSelectedUnits() {
+        if (typeof SensorHub !== 'undefined' && SensorHub.config && SensorHub.config.units) {
+            return SensorHub.config.units;
+        }
+        return localStorage.getItem('sensorHubUnits') || 'metric';
+    }
+    
+    // Get selected timezone from main app or default to local
+    function getSelectedTimezone() {
+        if (typeof SensorHub !== 'undefined' && SensorHub.config && SensorHub.config.timezone) {
+            return SensorHub.config.timezone;
+        }
+        return localStorage.getItem('sensorHubTimezone') || 'local';
+    }
+    
+    // Create labels with proper timezone handling
+    const selectedTimezone = getSelectedTimezone();
+    const selectedUnits = getSelectedUnits();
+    globalSelectedUnits = selectedUnits;
+    globalSelectedTimezone = selectedTimezone;
+    
+    // Chart creation function
+    window.createCharts = function() {
+        const readings = globalReadings;
+        const selectedUnits = globalSelectedUnits;
+        const selectedTimezone = globalSelectedTimezone;
+        
+        if (!readings || readings.length === 0) {
+            return;
+        }
+        
+        // Create labels with proper timezone handling
+        const labels = readings.map(r => {
+            const date = parseUTCTimestamp(r.timestamp);
+            return formatTimestampInTimezone(r.timestamp, selectedTimezone);
+        }).reverse();
+        
+        const colors = {
+            temperature: '#dc3545',
+            humidity: '#007bff', 
+            pressure: '#28a745',
+            dew_point: '#ffc107'
+        };
+        
+        // Check if we have data
+        if (readings.length > 0 && readings[0].data) {
+            const dataKeys = Object.keys(readings[0].data);
+        
+        // Temperature & Humidity Chart (dual axis)
+        const tempHumidityCtx = document.getElementById('tempHumidityChart').getContext('2d');
+        const tempHumidityDatasets = [];
+        
+        // Add temperature datasets (left axis)
+        if (dataKeys.includes('temperature')) {
+            tempHumidityDatasets.push({
+                label: `Temperature (${getTemperatureUnit(selectedUnits)})`,
+                data: readings.map(r => convertTemperature(r.data.temperature, selectedUnits)).reverse(),
+                borderColor: colors.temperature,
+                backgroundColor: colors.temperature + '20',
+                yAxisID: 'y',
+                tension: 0.4,
+                pointRadius: 2
+            });
+        }
+        
+        if (dataKeys.includes('dew_point')) {
+            tempHumidityDatasets.push({
+                label: `Dew Point (${getTemperatureUnit(selectedUnits)})`,
+                data: readings.map(r => convertTemperature(r.data.dew_point, selectedUnits)).reverse(),
+                borderColor: colors.dew_point,
+                backgroundColor: colors.dew_point + '20',
+                yAxisID: 'y',
+                tension: 0.4,
+                pointRadius: 2,
+                borderDash: [5, 5]
+            });
+        }
+        
+        // Add humidity dataset (right axis)
+        if (dataKeys.includes('humidity')) {
+            tempHumidityDatasets.push({
+                label: 'Humidity (%)',
+                data: readings.map(r => r.data.humidity).reverse(),
+                borderColor: colors.humidity,
+                backgroundColor: colors.humidity + '20',
+                yAxisID: 'y1',
+                tension: 0.4,
+                pointRadius: 2
+            });
+        }
+        
+        tempHumidityChart = new Chart(tempHumidityCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: tempHumidityDatasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: `Time (${selectedTimezone === 'local' ? 'Local' : selectedTimezone})`
+                        }
+                    },
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: `Temperature (${getTemperatureUnit(selectedUnits)})`
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Humidity (%)'
+                        },
+                        min: 0,
+                        max: 100,
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(context) {
+                                const index = context[0].dataIndex;
+                                const originalIndex = readings.length - 1 - index; // Account for reverse
+                                const timestamp = readings[originalIndex].timestamp;
+                                return formatTimestampInTimezone(timestamp, selectedTimezone);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Pressure Chart (single axis)
+        const pressureCtx = document.getElementById('pressureChart').getContext('2d');
+        const pressureDatasets = [];
+        
+        if (dataKeys.includes('pressure')) {
+            pressureDatasets.push({
+                label: `Pressure (${getPressureUnit(selectedUnits)})`,
+                data: readings.map(r => convertPressure(r.data.pressure, selectedUnits)).reverse(),
+                borderColor: colors.pressure,
+                backgroundColor: colors.pressure + '20',
+                tension: 0.4,
+                pointRadius: 2,
+                fill: true
+            });
+        }
+        
+        pressureChart = new Chart(pressureCtx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: pressureDatasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: `Time (${selectedTimezone === 'local' ? 'Local' : selectedTimezone})`
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: `Pressure (${getPressureUnit(selectedUnits)})`
+                        },
+                        beginAtZero: false
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            title: function(context) {
+                                const index = context[0].dataIndex;
+                                const originalIndex = readings.length - 1 - index; // Account for reverse
+                                const timestamp = readings[originalIndex].timestamp;
+                                return formatTimestampInTimezone(timestamp, selectedTimezone);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+    } // Close createCharts() function
+    
+    // Initial chart creation
+    window.createCharts();
+    
+    // Convert UTC timestamps to selected timezone in the data table
+    const timestampElements = document.querySelectorAll('.timestamp-utc');
+    timestampElements.forEach(element => {
+        const utcTimestamp = element.getAttribute('data-timestamp');
+        if (utcTimestamp) {
+            const formattedTime = formatTimestampInTimezone(utcTimestamp, selectedTimezone);
+            const timezoneDisplay = selectedTimezone === 'local' ? 'Local' : selectedTimezone;
+            element.innerHTML = `
+                <div>${formattedTime}</div>
+                <small class="text-muted">(${timezoneDisplay})</small>
+            `;
+        }
+    });
+});
+{% endif %}
+
+// Sensor Detail Page Configuration Management
+document.addEventListener('DOMContentLoaded', function() {
+    // Configuration object for this page
+    const SensorDetailConfig = {
+        units: 'metric',
+        timezone: 'local'
+    };
+
+    // Load saved preferences
+    function loadPreferences() {
+        const savedUnits = localStorage.getItem('sensorHubUnits');
+        const savedTimezone = localStorage.getItem('sensorHubTimezone');
+        
+        if (savedUnits && (savedUnits === 'metric' || savedUnits === 'imperial')) {
+            SensorDetailConfig.units = savedUnits;
+            const unitSelect = document.getElementById('unit-select');
+            if (unitSelect) {
+                unitSelect.value = savedUnits;
+            }
+        }
+        
+        if (savedTimezone) {
+            SensorDetailConfig.timezone = savedTimezone;
+            const timezoneSelect = document.getElementById('timezone-select');
+            if (timezoneSelect) {
+                timezoneSelect.value = savedTimezone;
+            }
+        }
+        
+        // Apply units to table on initial load
+        updateDataTableUnits();
+    }
+
+    // Update units
+    function updateUnits(newUnits) {
+        SensorDetailConfig.units = newUnits;
+        localStorage.setItem('sensorHubUnits', newUnits);
+        
+        // Update chart labels
+        updateChartLabels();
+        
+        // Update data table units if needed
+        updateDataTableUnits();
+        
+        console.log(`Sensor detail units updated to: ${newUnits}`);
+    }
+
+    // Update timezone
+    function updateTimezone(newTimezone) {
+        SensorDetailConfig.timezone = newTimezone;
+        localStorage.setItem('sensorHubTimezone', newTimezone);
+        
+        // Refresh charts and tables with new timezone
+        location.reload(); // Reload to apply timezone to charts
+        
+        console.log(`Sensor detail timezone updated to: ${newTimezone}`);
+    }
+
+    // Update chart labels for units
+    function updateChartLabels() {
+        // Update global variables with current settings
+        globalSelectedUnits = SensorDetailConfig.units;
+        globalSelectedTimezone = SensorDetailConfig.timezone;
+        
+        // Destroy existing charts and recreate them with new units
+        if (tempHumidityChart) {
+            tempHumidityChart.destroy();
+        }
+        if (pressureChart) {
+            pressureChart.destroy();
+        }
+        
+        // Recreate charts with new units
+        window.createCharts();
+    }
+
+    // Update data table units (for any numeric displays)
+    function updateDataTableUnits() {
+        // Update any unit displays in the data table
+        const tableRows = document.querySelectorAll('tbody tr');
+        tableRows.forEach(row => {
+            const cells = row.querySelectorAll('td');
+            cells.forEach((cell, index) => {
+                const text = cell.textContent.trim();
+                
+                // Update temperature units
+                if (text.includes('°C') && SensorDetailConfig.units === 'imperial') {
+                    const value = parseFloat(text);
+                    if (!isNaN(value)) {
+                        const fahrenheit = (value * 9/5) + 32;
+                        cell.textContent = `${fahrenheit.toFixed(1)}°F`;
+                    }
+                } else if (text.includes('°F') && SensorDetailConfig.units === 'metric') {
+                    const value = parseFloat(text);
+                    if (!isNaN(value)) {
+                        const celsius = (value - 32) * 5/9;
+                        cell.textContent = `${celsius.toFixed(1)}°C`;
+                    }
+                }
+                
+                // Update pressure units
+                if (text.includes('hPa') && SensorDetailConfig.units === 'imperial') {
+                    const value = parseFloat(text);
+                    if (!isNaN(value)) {
+                        const inHg = value * 0.02953;
+                        cell.textContent = `${inHg.toFixed(2)} inHg`;
+                    }
+                } else if (text.includes('inHg') && SensorDetailConfig.units === 'metric') {
+                    const value = parseFloat(text);
+                    if (!isNaN(value)) {
+                        const hPa = value / 0.02953;
+                        cell.textContent = `${hPa.toFixed(1)} hPa`;
+                    }
+                }
+            });
+        });
+    }
+
+    // Show update message
+    function showUpdateMessage(message) {
+        // Create a temporary alert
+        const alert = document.createElement('div');
+        alert.className = 'alert alert-info alert-dismissible fade show position-fixed';
+        alert.style.top = '20px';
+        alert.style.right = '20px';
+        alert.style.zIndex = '9999';
+        alert.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.body.appendChild(alert);
+        
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (alert.parentNode) {
+                alert.remove();
+            }
+        }, 5000);
+    }
+
+    // Setup event listeners
+    function setupEventListeners() {
+        const unitSelect = document.getElementById('unit-select');
+        const timezoneSelect = document.getElementById('timezone-select');
+        
+        if (unitSelect) {
+            unitSelect.addEventListener('change', function() {
+                updateUnits(this.value);
+            });
+        }
+        
+        if (timezoneSelect) {
+            timezoneSelect.addEventListener('change', function() {
+                updateTimezone(this.value);
+            });
+        }
+    }
+
+    // Initialize
+    loadPreferences();
+    setupEventListeners();
+});
+</script>
+{% endblock %}

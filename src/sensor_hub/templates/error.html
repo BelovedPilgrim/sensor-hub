@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><i class="fas fa-exclamation-triangle me-2 text-danger"></i>Error</h1>
+            <a href="{{ url_for('main.index') }}" class="btn btn-primary">
+                <i class="fas fa-home me-1"></i>Back to Dashboard
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card border-danger">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-exclamation-triangle fa-4x text-danger mb-4"></i>
+                <h3 class="card-title text-danger mb-3">Something went wrong</h3>
+                <p class="card-text text-muted mb-4">
+                    {{ error or "An unexpected error occurred. Please try again later." }}
+                </p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="javascript:history.back()" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Go Back
+                    </a>
+                    <a href="{{ url_for('main.index') }}" class="btn btn-primary">
+                        <i class="fas fa-home me-1"></i>Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
