@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sensor Hub - Status
+Comment=Check Sensor Hub status and view dashboard
+Exec=/home/david/github/sensor_hub/sensor_hub.sh status
+Icon=utilities-system-monitor
+Terminal=true
+Categories=System;Monitor;
+StartupNotify=true
+Path=/home/david/github/sensor_hub

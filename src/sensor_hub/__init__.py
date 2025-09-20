@@ -5,12 +5,21 @@ from flask_cors import CORS
 
 from sensor_hub.database import db, migrate
 from sensor_hub.config import Config
+from sensor_hub.logging_config import setup_logging
 
 
 def create_app(config_class=Config):
     """Application factory pattern."""
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+    # Configure logging first
+    setup_logging(
+        log_level=app.config.get('LOG_LEVEL', 'INFO'),
+        log_file=app.config.get('LOG_FILE'),
+        enable_console=True,
+        enable_colors=not app.config.get('TESTING', False)
+    )
 
     # Initialize extensions
     db.init_app(app)

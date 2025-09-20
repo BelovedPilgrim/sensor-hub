@@ -1,0 +1,29 @@
+[Unit]
+Description=Sensor Hub Web Application
+Documentation=file:///home/david/github/sensor_hub/README.md
+After=network.target sensor-hub-scheduler.service
+Wants=network-online.target
+Requires=sensor-hub-scheduler.service
+
+[Service]
+Type=exec
+User=david
+Group=david
+WorkingDirectory=/home/david/github/sensor_hub
+Environment=PATH=/home/david/.local/bin:/usr/local/bin:/usr/bin:/bin
+Environment=FLASK_APP=src.sensor_hub.app
+ExecStart=/usr/bin/poetry run flask run --host=0.0.0.0 --port=5001
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+StandardOutput=append:/home/david/github/sensor_hub/logs/webapp.log
+StandardError=append:/home/david/github/sensor_hub/logs/webapp.log
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/home/david/github/sensor_hub/logs /home/david/github/sensor_hub/sensor_hub.db
+
+[Install]
+WantedBy=multi-user.target

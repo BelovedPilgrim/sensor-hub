@@ -94,10 +94,28 @@ def start_scheduler():
         sensor_instances = {}
         for sensor_config in enabled_sensors:
             try:
+                # Build configuration dict
+                config = {
+                    'i2c_address': sensor_config.i2c_address,
+                    'bus_number': sensor_config.bus_number or 1,
+                    'poll_interval': sensor_config.poll_interval or 30
+                }
+                
+                # Add multiplexer configuration if available
+                if sensor_config.calibration_data:
+                    # calibration_data is already parsed as dict by SQLAlchemy JSON type
+                    cal_data = sensor_config.calibration_data
+                    if 'mux_address' in cal_data:
+                        config['mux_address'] = cal_data['mux_address']
+                    if 'mux_channel' in cal_data:
+                        config['mux_channel'] = cal_data['mux_channel']
+                    if 'mock_mode' in cal_data:
+                        config['mock_mode'] = cal_data['mock_mode']
+                
                 sensor_instance = sensor_registry.create_sensor(
                     sensor_config.sensor_type,  # sensor_type first
                     sensor_config.id,           # sensor_id second
-                    sensor_config.__dict__      # config dict third
+                    config                      # proper config dict
                 )
                 if sensor_instance and sensor_instance.is_available():
                     sensor_instances[sensor_config.id] = sensor_instance

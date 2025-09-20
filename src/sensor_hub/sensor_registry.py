@@ -130,7 +130,7 @@ class SensorRegistry:
                             sensors.extend(mux_sensors)
                 
                 # Check for direct BME280 connections (excluding confirmed multiplexers)
-                bme280_addresses = [0x76, 0x77]
+                bme280_addresses = [0x76, 0x77]  # Re-added 0x77 for discovery
                 for addr in detected_addresses:
                     if addr in bme280_addresses and addr not in multiplexer_addresses:
                         sensors.append({
@@ -190,7 +190,7 @@ class SensorRegistry:
             import time
             
             bus = smbus.SMBus(1)
-            bme280_addresses = [0x76, 0x77]
+            bme280_addresses = [0x76, 0x77]  # Re-added 0x77 for discovery
             
             for channel in range(8):
                 try:

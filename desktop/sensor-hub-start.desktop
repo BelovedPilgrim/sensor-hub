@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sensor Hub
+Comment=Start the Sensor Hub data collection system
+Exec=/home/david/github/sensor_hub/sensor_hub.sh start
+Icon=applications-system
+Terminal=true
+Categories=System;Monitor;
+StartupNotify=true
+Path=/home/david/github/sensor_hub

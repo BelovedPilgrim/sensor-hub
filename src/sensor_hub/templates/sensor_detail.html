@@ -15,7 +15,7 @@
     padding-bottom: 0.5rem;
 }
 
-#tempHumidityChart, #pressureChart {
+#tempHumidityChart, #pressureChart, #lightChart {
     max-height: 350px;
 }
 </style>
@@ -183,17 +183,25 @@
             </div>
             <div class="card-body">
                 {% if readings %}
-                    <!-- Temperature & Humidity Chart -->
-                    <div class="chart-container mb-4">
-                        <h6 class="mb-3"><i class="fas fa-thermometer-half me-2"></i>Temperature & Humidity</h6>
-                        <canvas id="tempHumidityChart"></canvas>
-                    </div>
-                    
-                    <!-- Pressure Chart -->
-                    <div class="chart-container mb-4">
-                        <h6 class="mb-3"><i class="fas fa-gauge me-2"></i>Pressure</h6>
-                        <canvas id="pressureChart"></canvas>
-                    </div>
+                    {% if sensor.sensor_type == 'bme280' %}
+                        <!-- Temperature & Humidity Chart -->
+                        <div class="chart-container mb-4">
+                            <h6 class="mb-3"><i class="fas fa-thermometer-half me-2"></i>Temperature & Humidity</h6>
+                            <canvas id="tempHumidityChart"></canvas>
+                        </div>
+                        
+                        <!-- Pressure Chart -->
+                        <div class="chart-container mb-4">
+                            <h6 class="mb-3"><i class="fas fa-gauge me-2"></i>Pressure</h6>
+                            <canvas id="pressureChart"></canvas>
+                        </div>
+                    {% elif sensor.sensor_type == 'ltr329' %}
+                        <!-- Light Levels Chart -->
+                        <div class="chart-container mb-4">
+                            <h6 class="mb-3"><i class="fas fa-lightbulb me-2"></i>Light & IR Levels</h6>
+                            <canvas id="lightChart"></canvas>
+                        </div>
+                    {% endif %}
                     
                     <div class="table-responsive">
                         <table class="table table-striped">
@@ -219,7 +227,9 @@
                                     {% if reading.data %}
                                         {% for key, value in reading.data.items() %}
                                             <td>
-                                                {% if key == 'temperature' %}
+                                                {% if value is none %}
+                                                    -
+                                                {% elif key == 'temperature' %}
                                                     {{ "%.1f"|format(value) }}°C
                                                 {% elif key == 'humidity' %}
                                                     {{ "%.1f"|format(value) }}%
@@ -227,6 +237,10 @@
                                                     {{ "%.1f"|format(value) }} hPa
                                                 {% elif key == 'dew_point' %}
                                                     {{ "%.1f"|format(value) }}°C
+                                                {% elif key == 'light_level' %}
+                                                    {{ "%.1f"|format(value) }} lux
+                                                {% elif key == 'ir_level' %}
+                                                    {{ "%.1f"|format(value) }} (IR)
                                                 {% else %}
                                                     {{ value }}
                                                 {% endif %}
@@ -267,6 +281,7 @@ function updateTimeRange(hours) {
 // Global chart variables
 let tempHumidityChart = null;
 let pressureChart = null;
+let lightChart = null;
 let globalReadings = null;
 let globalSelectedUnits = 'metric';
 let globalSelectedTimezone = 'local';
@@ -385,123 +400,128 @@ document.addEventListener('DOMContentLoaded', function() {
         if (readings.length > 0 && readings[0].data) {
             const dataKeys = Object.keys(readings[0].data);
         
-        // Temperature & Humidity Chart (dual axis)
-        const tempHumidityCtx = document.getElementById('tempHumidityChart').getContext('2d');
-        const tempHumidityDatasets = [];
+        // Temperature & Humidity Chart (dual axis) - only for BME280
+        const tempHumidityElement = document.getElementById('tempHumidityChart');
+        if (tempHumidityElement) {
+            const tempHumidityCtx = tempHumidityElement.getContext('2d');
+            const tempHumidityDatasets = [];
+            
+            // Add temperature datasets (left axis)
+            if (dataKeys.includes('temperature') && readings[0].data.temperature !== null) {
+                tempHumidityDatasets.push({
+                    label: `Temperature (${getTemperatureUnit(selectedUnits)})`,
+                    data: readings.map(r => convertTemperature(r.data.temperature, selectedUnits)).reverse(),
+                    borderColor: colors.temperature,
+                    backgroundColor: colors.temperature + '20',
+                    yAxisID: 'y',
+                    tension: 0.4,
+                    pointRadius: 2
+                });
+            }
+            
+            if (dataKeys.includes('dew_point') && readings[0].data.dew_point !== null) {
+                tempHumidityDatasets.push({
+                    label: `Dew Point (${getTemperatureUnit(selectedUnits)})`,
+                    data: readings.map(r => convertTemperature(r.data.dew_point, selectedUnits)).reverse(),
+                    borderColor: colors.dew_point,
+                    backgroundColor: colors.dew_point + '20',
+                    yAxisID: 'y',
+                    tension: 0.4,
+                    pointRadius: 2,
+                    borderDash: [5, 5]
+                });
+            }
+            
+            // Add humidity dataset (right axis)
+            if (dataKeys.includes('humidity') && readings[0].data.humidity !== null) {
+                tempHumidityDatasets.push({
+                    label: 'Humidity (%)',
+                    data: readings.map(r => r.data.humidity).reverse(),
+                    borderColor: colors.humidity,
+                    backgroundColor: colors.humidity + '20',
+                    yAxisID: 'y1',
+                    tension: 0.4,
+                    pointRadius: 2
+                });
+            }
         
-        // Add temperature datasets (left axis)
-        if (dataKeys.includes('temperature')) {
-            tempHumidityDatasets.push({
-                label: `Temperature (${getTemperatureUnit(selectedUnits)})`,
-                data: readings.map(r => convertTemperature(r.data.temperature, selectedUnits)).reverse(),
-                borderColor: colors.temperature,
-                backgroundColor: colors.temperature + '20',
-                yAxisID: 'y',
-                tension: 0.4,
-                pointRadius: 2
-            });
-        }
-        
-        if (dataKeys.includes('dew_point')) {
-            tempHumidityDatasets.push({
-                label: `Dew Point (${getTemperatureUnit(selectedUnits)})`,
-                data: readings.map(r => convertTemperature(r.data.dew_point, selectedUnits)).reverse(),
-                borderColor: colors.dew_point,
-                backgroundColor: colors.dew_point + '20',
-                yAxisID: 'y',
-                tension: 0.4,
-                pointRadius: 2,
-                borderDash: [5, 5]
-            });
-        }
-        
-        // Add humidity dataset (right axis)
-        if (dataKeys.includes('humidity')) {
-            tempHumidityDatasets.push({
-                label: 'Humidity (%)',
-                data: readings.map(r => r.data.humidity).reverse(),
-                borderColor: colors.humidity,
-                backgroundColor: colors.humidity + '20',
-                yAxisID: 'y1',
-                tension: 0.4,
-                pointRadius: 2
-            });
-        }
-        
-        tempHumidityChart = new Chart(tempHumidityCtx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: tempHumidityDatasets
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                interaction: {
-                    mode: 'index',
-                    intersect: false,
+            tempHumidityChart = new Chart(tempHumidityCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: tempHumidityDatasets
                 },
-                scales: {
-                    x: {
-                        display: true,
-                        title: {
-                            display: true,
-                            text: `Time (${selectedTimezone === 'local' ? 'Local' : selectedTimezone})`
-                        }
-                    },
-                    y: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        title: {
-                            display: true,
-                            text: `Temperature (${getTemperatureUnit(selectedUnits)})`
-                        },
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    },
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'right',
-                        title: {
-                            display: true,
-                            text: 'Humidity (%)'
-                        },
-                        min: 0,
-                        max: 100,
-                        grid: {
-                            drawOnChartArea: false,
-                        },
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top'
-                    },
-                    tooltip: {
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
                         mode: 'index',
                         intersect: false,
-                        callbacks: {
-                            title: function(context) {
-                                const index = context[0].dataIndex;
-                                const originalIndex = readings.length - 1 - index; // Account for reverse
-                                const timestamp = readings[originalIndex].timestamp;
-                                return formatTimestampInTimezone(timestamp, selectedTimezone);
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: `Time (${selectedTimezone === 'local' ? 'Local' : selectedTimezone})`
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: `Temperature (${getTemperatureUnit(selectedUnits)})`
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Humidity (%)'
+                            },
+                            min: 0,
+                            max: 100,
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                title: function(context) {
+                                    const index = context[0].dataIndex;
+                                    const originalIndex = readings.length - 1 - index; // Account for reverse
+                                    const timestamp = readings[originalIndex].timestamp;
+                                    return formatTimestampInTimezone(timestamp, selectedTimezone);
+                                }
                             }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
         
-        // Pressure Chart (single axis)
-        const pressureCtx = document.getElementById('pressureChart').getContext('2d');
-        const pressureDatasets = [];
+        // Pressure Chart (single axis) - only for BME280
+        const pressureElement = document.getElementById('pressureChart');
+        if (pressureElement) {
+            const pressureCtx = pressureElement.getContext('2d');
+            const pressureDatasets = [];
         
-        if (dataKeys.includes('pressure')) {
+        if (dataKeys.includes('pressure') && readings[0].data.pressure !== null) {
             pressureDatasets.push({
                 label: `Pressure (${getPressureUnit(selectedUnits)})`,
                 data: readings.map(r => convertPressure(r.data.pressure, selectedUnits)).reverse(),
@@ -559,6 +579,113 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         });
+        }
+        
+        // Light & IR Chart for LTR329 (dual axis)
+        if (document.getElementById('lightChart')) {
+            const lightCtx = document.getElementById('lightChart').getContext('2d');
+            const lightDatasets = [];
+            
+            const lightColors = {
+                light_level: '#ffc107',  // Amber for visible light
+                ir_level: '#dc3545'      // Red for IR
+            };
+            
+            if (dataKeys.includes('light_level')) {
+                lightDatasets.push({
+                    label: 'Visible+IR Light (lux)',
+                    data: readings.map(r => r.data.light_level || 0).reverse(),
+                    borderColor: lightColors.light_level,
+                    backgroundColor: lightColors.light_level + '20',
+                    yAxisID: 'y',
+                    tension: 0.4,
+                    pointRadius: 2,
+                    fill: true
+                });
+            }
+            
+            if (dataKeys.includes('ir_level')) {
+                lightDatasets.push({
+                    label: 'IR Level',
+                    data: readings.map(r => r.data.ir_level || 0).reverse(),
+                    borderColor: lightColors.ir_level,
+                    backgroundColor: lightColors.ir_level + '20',
+                    yAxisID: 'y1',
+                    tension: 0.4,
+                    pointRadius: 2,
+                    fill: true
+                });
+            }
+            
+            lightChart = new Chart(lightCtx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: lightDatasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: `Time (${selectedTimezone === 'local' ? 'Local' : selectedTimezone})`
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Visible+IR Light (lux)'
+                            },
+                            beginAtZero: true,
+                            grid: {
+                                drawOnChartArea: true,
+                            },
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'IR Level'
+                            },
+                            beginAtZero: true,
+                            grid: {
+                                drawOnChartArea: false,
+                            },
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                title: function(context) {
+                                    const index = context[0].dataIndex;
+                                    const originalIndex = readings.length - 1 - index;
+                                    const timestamp = readings[originalIndex].timestamp;
+                                    return formatTimestampInTimezone(timestamp, selectedTimezone);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
     }
     } // Close createCharts() function
     
@@ -651,6 +778,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         if (pressureChart) {
             pressureChart.destroy();
+        }
+        if (lightChart) {
+            lightChart.destroy();
         }
         
         // Recreate charts with new units

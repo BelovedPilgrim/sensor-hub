@@ -41,8 +41,14 @@ def get_sensor(sensor_id: str):
                 'status': 'error'
             }), 404
         
+        # Get sensor data and include latest reading
+        sensor_data = sensor.to_dict()
+        latest_reading = sensor.get_latest_reading()
+        if latest_reading:
+            sensor_data['latest_reading'] = latest_reading.to_dict()
+        
         return jsonify({
-            'sensor': sensor.to_dict(),
+            'sensor': sensor_data,
             'status': 'success'
         })
     except Exception as e:

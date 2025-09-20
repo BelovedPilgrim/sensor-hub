@@ -1,0 +1,27 @@
+[Unit]
+Description=Sensor Hub Scheduler
+Documentation=file:///home/david/github/sensor_hub/README.md
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=exec
+User=david
+Group=david
+WorkingDirectory=/home/david/github/sensor_hub
+Environment=PATH=/home/david/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/poetry run flask --app src.sensor_hub.app start-scheduler
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+RestartSec=10
+StandardOutput=append:/home/david/github/sensor_hub/logs/scheduler.log
+StandardError=append:/home/david/github/sensor_hub/logs/scheduler.log
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/home/david/github/sensor_hub/logs /home/david/github/sensor_hub/sensor_hub.db
+
+[Install]
+WantedBy=multi-user.target

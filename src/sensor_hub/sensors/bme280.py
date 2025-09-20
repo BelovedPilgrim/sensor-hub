@@ -13,6 +13,9 @@ except ImportError:
     HAS_BME280 = False
 
 from sensor_hub.sensors import SensorInterface
+from sensor_hub.logging_config import (
+    get_sensor_logger, log_sensor_init, log_sensor_reading, log_sensor_error
+)
 
 logger = logging.getLogger(__name__)
 
@@ -22,12 +25,15 @@ class BME280Sensor(SensorInterface):
     
     def __init__(self, sensor_id: str, config: Dict[str, Any]):
         super().__init__(sensor_id, config)
-        self.i2c_address = config.get('i2c_address', 0x77)
+        self.i2c_address = config.get('i2c_address', 0x76)  # Default changed
         self.mux_address = config.get('mux_address', None)
         self.mux_channel = config.get('mux_channel', None)
         self.bus_number = config.get('bus_number', 1)
         self.bme280 = None
         self.i2c_bus = None
+        
+        # Create sensor-specific logger
+        self.logger = get_sensor_logger(__name__, sensor_id, 'bme280')
         
         if HAS_BME280:
             try:
@@ -41,16 +47,19 @@ class BME280Sensor(SensorInterface):
                     i2c, address=self.i2c_address
                 )
                 self.status = 'active'
+                log_sensor_init(self.logger, sensor_id, 'bme280', success=True)
+                
                 if self.mux_address:
-                    logger.info(f"BME280 {sensor_id} initialized at 0x{self.i2c_address:02x} "
-                              f"via MUX 0x{self.mux_address:02x} channel {self.mux_channel}")
-                else:
-                    logger.info(f"BME280 {sensor_id} initialized at 0x{self.i2c_address:02x}")
+                    self.logger.info(
+                        "Initialized via multiplexer at 0x%02x channel %d",
+                        self.mux_address, self.mux_channel
+                    )
             except Exception as e:
-                logger.error(f"Failed to initialize BME280 {sensor_id}: {e}")
                 self.status = 'error'
+                log_sensor_init(self.logger, sensor_id, 'bme280', 
+                              success=False, error=str(e))
         else:
-            logger.warning("BME280 libraries not available")
+            self.logger.warning("BME280 libraries not available")
             self.status = 'unavailable'
     
     def _select_mux_channel(self):
@@ -88,6 +97,9 @@ class BME280Sensor(SensorInterface):
                 'dew_point': dew_point
             }
             
+            # Log successful reading
+            log_sensor_reading(self.logger, self.sensor_id, 'bme280', data)
+            
             self.last_reading = {
                 'sensor_id': self.sensor_id,
                 'sensor_type': self.get_sensor_type(),
@@ -100,6 +112,7 @@ class BME280Sensor(SensorInterface):
             return self.last_reading
             
         except Exception as e:
+            log_sensor_error(self.logger, self.sensor_id, 'bme280', e)
             return self._handle_error(e)
     
     def is_available(self) -> bool:

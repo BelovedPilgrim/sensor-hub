@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Link
+Name=Sensor Hub Dashboard
+Comment=Open the Sensor Hub web dashboard
+URL=http://localhost:5001
+Icon=applications-internet
+Categories=Network;Monitor;

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sensor Hub - Stop
+Comment=Stop the Sensor Hub services
+Exec=/home/david/github/sensor_hub/sensor_hub.sh stop
+Icon=process-stop
+Terminal=true
+Categories=System;Monitor;
+StartupNotify=true
+Path=/home/david/github/sensor_hub
