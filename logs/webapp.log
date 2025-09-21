@@ -1,7 +1,0 @@
-2025-09-20 12:51:36 | INFO     | sensor_hub.logging_config | Logging configured - Level: INFO, File: /home/david/github/sensor_hub/logs/sensor_hub.log
-2025-09-20 12:51:36 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
-2025-09-20 12:51:36 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
-2025-09-20 12:51:36 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
-2025-09-20 12:51:36 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
- * Serving Flask app 'src.sensor_hub.app'
- * Debug mode: off
