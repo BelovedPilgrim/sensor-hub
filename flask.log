@@ -1,0 +1,714 @@
+2025-09-20 18:01:27 | INFO     | sensor_hub.logging_config | Logging configured - Level: INFO, File: /home/david/github/sensor_hub/logs/sensor_hub.log
+2025-09-20 18:01:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:01:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:01:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:01:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:01:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:01:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+ * Serving Flask app 'src.sensor_hub'
+ * Debug mode: off
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:01:37 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:01:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:01:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:01:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:02:52 | ERROR    | sensor_hub.routes         | Error loading data view: data.html
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:07:27 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:07:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:07:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:07:32 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:07:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:07:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:07:37 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:07:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:07:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:07:42 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:07:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:07:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:07:47 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:07:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:07:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:07:52 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:07:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:07:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:07:57 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:07:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:07:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:07:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:02 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:07 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:12 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:17 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:22 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:27 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:32 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:37 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:42 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:47 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:52 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:08:57 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:08:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:08:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:08:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:02 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:07 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:12 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:17 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:22 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:27 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:32 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:37 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:42 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:47 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:52 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:09:57 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:09:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:09:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:09:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:02 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:07 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:12 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:17 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:22 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:27 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:32 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:37 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:42 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:47 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:52 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:10:57 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:10:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:10:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:10:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:02 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:07 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:12 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:17 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:22 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:27 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:32 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:37 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:42 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:42 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:43 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:47 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:47 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:47 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:52 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:52 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:53 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:11:57 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:11:57 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:11:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:11:57 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:02 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:02 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:03 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:07 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:07 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:07 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:12 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:12 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:13 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:17 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:17 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:17 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:22 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:22 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:23 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:27 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:27 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:27 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:32 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:32 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:33 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+2025-09-20 18:12:37 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-20 18:12:37 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+2025-09-20 18:12:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully
+2025-09-20 18:12:37 | INFO     | mpu6050_70_7_68           | [sensor:mpu6050, type:mpu6050] | Sensor initialized successfully

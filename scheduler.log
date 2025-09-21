@@ -1,0 +1,61 @@
+2025-09-21 10:24:01 | INFO     | sensor_hub.logging_config | Logging configured - Level: INFO, File: /home/david/github/sensor_hub/logs/sensor_hub.log
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensor_registry | Registered sensor type: bme280
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: bme280
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensor_registry | Registered sensor type: ltr329
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: ltr329
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensor_registry | Registered sensor type: mpu6050
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensor_registry | Registered discovery handler for: mpu6050
+Starting sensor scheduler...
+Found 2 enabled sensors
+2025-09-21 10:24:01 | ERROR    | sensor_hub.sensors.ltr329 | [sensor:ltr329_70_0_29, type:ltr329] | Sensor initialization failed - unsupported operand type(s) for &: 'NoneType' and 'int'
+✗ ltr329_70_0_29 not available
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor initialized successfully
+2025-09-21 10:24:01 | INFO     | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Initialized via multiplexer at 0x70 channel 0
+✓ bme280_70_0_77 (bme280) ready
+Starting data collection for 1 sensors...
+Press Ctrl+C to stop
+📊 bme280_70_0_77: T=21.28°C, H=56.4%, P=984.33hPa
+📊 bme280_70_0_77: T=21.25°C, H=56.51%, P=984.31hPa
+📊 bme280_70_0_77: T=21.24°C, H=56.44%, P=984.32hPa
+📊 bme280_70_0_77: T=21.25°C, H=56.42%, P=984.33hPa
+📊 bme280_70_0_77: T=21.25°C, H=56.54%, P=984.3hPa
+📊 bme280_70_0_77: T=21.24°C, H=56.43%, P=984.28hPa
+📊 bme280_70_0_77: T=21.27°C, H=56.47%, P=984.28hPa
+📊 bme280_70_0_77: T=21.28°C, H=56.56%, P=984.28hPa
+📊 bme280_70_0_77: T=21.27°C, H=56.44%, P=984.3hPa
+📊 bme280_70_0_77: T=21.27°C, H=56.54%, P=984.3hPa
+📊 bme280_70_0_77: T=21.26°C, H=56.49%, P=984.3hPa
+📊 bme280_70_0_77: T=21.28°C, H=56.28%, P=984.27hPa
+📊 bme280_70_0_77: T=21.28°C, H=56.42%, P=984.29hPa
+📊 bme280_70_0_77: T=21.29°C, H=56.35%, P=984.28hPa
+📊 bme280_70_0_77: T=21.29°C, H=56.5%, P=984.34hPa
+📊 bme280_70_0_77: T=21.28°C, H=56.23%, P=984.31hPa
+📊 bme280_70_0_77: T=21.29°C, H=56.57%, P=984.29hPa
+📊 bme280_70_0_77: T=21.29°C, H=56.46%, P=984.33hPa
+📊 bme280_70_0_77: T=21.29°C, H=56.43%, P=984.3hPa
+📊 bme280_70_0_77: T=21.33°C, H=56.26%, P=984.34hPa
+📊 bme280_70_0_77: T=21.32°C, H=56.06%, P=984.38hPa
+📊 bme280_70_0_77: T=21.32°C, H=56.35%, P=984.35hPa
+📊 bme280_70_0_77: T=21.32°C, H=56.34%, P=984.37hPa
+📊 bme280_70_0_77: T=21.33°C, H=56.16%, P=984.37hPa
+📊 bme280_70_0_77: T=21.34°C, H=56.29%, P=984.36hPa
+📊 bme280_70_0_77: T=21.34°C, H=56.51%, P=984.36hPa
+📊 bme280_70_0_77: T=22.29°C, H=100%, P=900.96hPa
+2025-09-21 10:37:35 | ERROR    | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor error occurred - [Errno 121] Remote I/O error (exception_type=OSError)
+2025-09-21 10:37:35 | ERROR    | sensor_hub.sensors        | Sensor bme280_70_0_77 error: [Errno 121] Remote I/O error
+📊 bme280_70_0_77: T=N/A°C, H=N/A%, P=N/AhPa
+📊 bme280_70_0_77: T=21.46°C, H=56.24%, P=984.33hPa
+2025-09-21 10:38:35 | ERROR    | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor error occurred - [Errno 121] Remote I/O error (exception_type=OSError)
+2025-09-21 10:38:35 | ERROR    | sensor_hub.sensors        | Sensor bme280_70_0_77 error: [Errno 121] Remote I/O error
+📊 bme280_70_0_77: T=N/A°C, H=N/A%, P=N/AhPa
+2025-09-21 10:39:05 | ERROR    | sensor_hub.sensors.bme280 | [sensor:bme280_70_0_77, type:bme280] | Sensor error occurred - [Errno 121] Remote I/O error (exception_type=OSError)
+2025-09-21 10:39:05 | ERROR    | sensor_hub.sensors        | Sensor bme280_70_0_77 error: [Errno 121] Remote I/O error
+📊 bme280_70_0_77: T=N/A°C, H=N/A%, P=N/AhPa
+📊 bme280_70_0_77: T=21.32°C, H=56.31%, P=984.31hPa
+📊 bme280_70_0_77: T=21.34°C, H=56.18%, P=984.29hPa
+📊 bme280_70_0_77: T=21.34°C, H=56.2%, P=984.29hPa
+📊 bme280_70_0_77: T=21.35°C, H=56.2%, P=984.3hPa
+📊 bme280_70_0_77: T=21.36°C, H=56.06%, P=984.3hPa
+📊 bme280_70_0_77: T=21.36°C, H=56.04%, P=984.27hPa
+📊 bme280_70_0_77: T=21.38°C, H=56.11%, P=984.31hPa
+📊 bme280_70_0_77: T=21.39°C, H=55.92%, P=984.32hPa

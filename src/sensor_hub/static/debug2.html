@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensor Debug Test</title>
+    <style>
+        .debug { background: #f8f9fa; padding: 10px; margin: 10px 0; border: 1px solid #ddd; }
+        .sensor-card { border: 1px solid #ccc; margin: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Sensor Debug Test</h1>
+    <div id="debug-output" class="debug">
+        <h3>Debug Output:</h3>
+        <div id="log"></div>
+    </div>
+
+    <div class="sensor-card" data-sensor-id="test_bme280">
+        <div class="sensor-info">
+            <strong>Type:</strong> bme280<br>
+        </div>
+        <div class="sensor-data">
+            <p>Loading sensor data...</p>
+            <script type="application/json" class="sensor-raw-data">{"temperature": 21.5, "humidity": 55.0, "pressure": 986.0}</script>
+        </div>
+    </div>
+
+    <script>
+        function log(msg) {
+            const logDiv = document.getElementById('log');
+            logDiv.innerHTML += '<div>' + new Date().toLocaleTimeString() + ': ' + msg + '</div>';
+        }
+
+        function getSensorTypeFromCard(card) {
+            const sensorInfo = card.querySelector('.sensor-info');
+            if (sensorInfo) {
+                const typeText = sensorInfo.textContent;
+                const match = typeText.match(/Type:\s*(\w+)/);
+                return match ? match[1] : null;
+            }
+            return null;
+        }
+
+        function getRelevantFieldsForSensorType(sensorType, data) {
+            const relevantFields = {};
+            
+            if (sensorType === 'bme280') {
+                ['temperature', 'humidity', 'pressure', 'dew_point'].forEach(field => {
+                    if (data[field] !== null && data[field] !== undefined) {
+                        relevantFields[field] = data[field];
+                    }
+                });
+            }
+            return relevantFields;
+        }
+
+        function formatSensorValue(key, value) {
+            if (key === 'temperature') return value.toFixed(1) + '°C';
+            if (key === 'humidity') return value.toFixed(1) + '%';
+            if (key === 'pressure') return value.toFixed(1) + ' hPa';
+            return value;
+        }
+
+        function formatSensorLabel(key) {
+            const labels = {
+                'temperature': 'Temperature',
+                'humidity': 'Humidity', 
+                'pressure': 'Pressure',
+                'dew_point': 'Dew Point'
+            };
+            return labels[key] || key;
+        }
+
+        function updateSensorDataDisplay(card, data) {
+            log('updateSensorDataDisplay called with: ' + card.dataset.sensorId);
+            const dataContainer = card.querySelector('.sensor-data');
+            if (!dataContainer) {
+                log('No data container found');
+                return;
+            }
+
+            const sensorType = getSensorTypeFromCard(card);
+            log('Detected sensor type: ' + sensorType);
+            const relevantFields = getRelevantFieldsForSensorType(sensorType, data);
+            log('Relevant fields: ' + JSON.stringify(relevantFields));
+
+            let html = '<div>';
+            
+            Object.entries(relevantFields).forEach(([key, value]) => {
+                html += '<div>' + formatSensorLabel(key) + ': ' + formatSensorValue(key, value) + '</div>';
+            });
+            
+            html += '</div>';
+            dataContainer.innerHTML = html;
+            log('HTML updated');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            log('DOMContentLoaded fired');
+            const sensorCards = document.querySelectorAll('.sensor-card');
+            log('Found sensor cards: ' + sensorCards.length);
+            
+            sensorCards.forEach(card => {
+                log('Processing card: ' + card.dataset.sensorId);
+                const rawDataScript = card.querySelector('.sensor-raw-data');
+                log('Raw data script found: ' + !!rawDataScript);
+                
+                if (rawDataScript) {
+                    try {
+                        const rawData = JSON.parse(rawDataScript.textContent);
+                        log('Raw data: ' + JSON.stringify(rawData));
+                        updateSensorDataDisplay(card, rawData);
+                    } catch (error) {
+                        log('Error parsing data: ' + error.message);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

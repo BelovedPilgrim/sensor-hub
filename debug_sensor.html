@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensor Hub Debug</title>
+</head>
+<body>
+    <div class="sensor-card" data-sensor-id="test_sensor">
+        <div class="sensor-info">
+            <strong>Type:</strong> bme280<br>
+        </div>
+        <div class="sensor-data">
+            <p>Loading sensor data...</p>
+            <script type="application/json" class="sensor-raw-data">{"temperature": 21.5, "humidity": 55.0, "pressure": 986.0}</script>
+        </div>
+    </div>
+
+    <script>
+        // Test the JavaScript functions
+        function getSensorTypeFromCard(card) {
+            const sensorInfo = card.querySelector('.sensor-info');
+            if (sensorInfo) {
+                const typeText = sensorInfo.textContent;
+                console.log('Type text:', typeText);
+                const match = typeText.match(/Type:\s*(\w+)/);
+                console.log('Match result:', match);
+                return match ? match[1] : null;
+            }
+            return null;
+        }
+
+        function getRelevantFieldsForSensorType(sensorType, data) {
+            console.log('Sensor type:', sensorType, 'Data:', data);
+            const relevantFields = {};
+            
+            if (sensorType === 'bme280') {
+                ['temperature', 'humidity', 'pressure', 'dew_point'].forEach(field => {
+                    if (data[field] !== null && data[field] !== undefined) {
+                        relevantFields[field] = data[field];
+                    }
+                });
+            }
+            return relevantFields;
+        }
+
+        // Test when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const card = document.querySelector('.sensor-card');
+            const rawDataScript = card.querySelector('.sensor-raw-data');
+            
+            if (rawDataScript) {
+                try {
+                    const rawData = JSON.parse(rawDataScript.textContent);
+                    console.log('Raw data:', rawData);
+                    
+                    const sensorType = getSensorTypeFromCard(card);
+                    console.log('Detected sensor type:', sensorType);
+                    
+                    const relevantFields = getRelevantFieldsForSensorType(sensorType, rawData);
+                    console.log('Relevant fields:', relevantFields);
+                    
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

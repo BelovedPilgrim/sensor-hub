@@ -39,10 +39,10 @@ stop_existing_processes() {
         sleep 2
     fi
     
-    # Stop web app
-    if check_process "flask.*run"; then
+    # Stop web app (look for Flask with our app)
+    if check_process "flask.*src\.sensor_hub.*run"; then
         echo "  Stopping existing web app..."
-        pkill -f "flask.*run"
+        pkill -f "flask.*src\.sensor_hub.*run"
         sleep 2
     fi
     
@@ -56,23 +56,30 @@ start_scheduler() {
     # Use poetry if available, otherwise use direct python
     if command -v poetry &> /dev/null && [ -f "pyproject.toml" ]; then
         echo "  Using Poetry environment..."
-        poetry run python -m sensor_hub.cli start-scheduler > scheduler.log 2>&1 &
+        poetry run python -m flask --app src.sensor_hub start-scheduler > scheduler.log 2>&1 &
         SCHEDULER_PID=$!
         echo "  Scheduler PID: $SCHEDULER_PID"
     else
         echo "  Using direct Python..."
-        python -m sensor_hub.cli start-scheduler > scheduler.log 2>&1 &
+        python -m flask --app src.sensor_hub start-scheduler > scheduler.log 2>&1 &
         SCHEDULER_PID=$!
         echo "  Scheduler PID: $SCHEDULER_PID"
     fi
     
-    sleep 5
+    sleep 8
     
-    # Check if the process is still running
+    # Check if the process is still running and look for success indicators in log
     if kill -0 $SCHEDULER_PID 2>/dev/null; then
-        echo -e "${GREEN}  ✅ Scheduler started successfully (PID: $SCHEDULER_PID)${NC}"
-        echo "  📄 Logs: scheduler.log"
-        return 0
+        # Also check if the scheduler is actually working by looking for data collection messages
+        if grep -q "Starting data collection\|ready" scheduler.log; then
+            echo -e "${GREEN}  ✅ Scheduler started successfully (PID: $SCHEDULER_PID)${NC}"
+            echo "  📄 Logs: scheduler.log"
+            return 0
+        else
+            echo -e "${YELLOW}  ⚠️  Scheduler process running but no sensors ready${NC}"
+            echo "  📄 Check scheduler.log for sensor issues"
+            return 0  # Still return success since the process is running
+        fi
     else
         echo -e "${RED}  ❌ Failed to start scheduler${NC}"
         echo "  📄 Check scheduler.log for errors"
@@ -123,7 +130,7 @@ show_status() {
         echo -e "${RED}  📊 Scheduler: Stopped${NC}"
     fi
     
-    if check_process "flask.*run"; then
+    if check_process "flask.*src\.sensor_hub.*run"; then
         echo -e "${GREEN}  🌐 Web App: Running${NC}"
         echo -e "${GREEN}     URL: http://localhost:5001${NC}"
     else
@@ -148,9 +155,9 @@ if pgrep -f "start-scheduler" > /dev/null; then
 fi
 
 # Stop web app
-if pgrep -f "flask.*run" > /dev/null; then
+if pgrep -f "flask.*src\.sensor_hub.*run" > /dev/null; then
     echo "  Stopping web app..."
-    pkill -f "flask.*run"
+    pkill -f "flask.*src\.sensor_hub.*run"
 fi
 
 sleep 2

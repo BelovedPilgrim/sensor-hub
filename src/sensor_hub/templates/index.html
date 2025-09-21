@@ -68,7 +68,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="card-title">Total Sensors</h5>
-                        <h3 class="mb-0">{{ sensors|length }}</h3>
+                        <h3 class="mb-0">{{ status_counts.total }}</h3>
                     </div>
                     <div class="align-self-center">
                         <i class="fas fa-microchip fa-2x"></i>
@@ -84,7 +84,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="card-title">Active Sensors</h5>
-                        <h3 class="mb-0">{{ sensors|selectattr('status', 'equalto', 'active')|list|length }}</h3>
+                        <h3 class="mb-0">{{ status_counts.active }}</h3>
                     </div>
                     <div class="align-self-center">
                         <i class="fas fa-check-circle fa-2x"></i>
@@ -100,7 +100,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="card-title">Error Sensors</h5>
-                        <h3 class="mb-0">{{ sensors|selectattr('status', 'equalto', 'error')|list|length }}</h3>
+                        <h3 class="mb-0">{{ status_counts.error }}</h3>
                     </div>
                     <div class="align-self-center">
                         <i class="fas fa-exclamation-triangle fa-2x"></i>
@@ -116,7 +116,7 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h5 class="card-title">Unavailable</h5>
-                        <h3 class="mb-0">{{ sensors|selectattr('status', 'equalto', 'unavailable')|list|length }}</h3>
+                        <h3 class="mb-0">{{ status_counts.unavailable }}</h3>
                     </div>
                     <div class="align-self-center">
                         <i class="fas fa-times-circle fa-2x"></i>
@@ -143,8 +143,13 @@
                     {% endif %}
                     {{ sensor.name or sensor.id }}
                 </h5>
-                <span class="badge bg-{{ 'success' if sensor.status == 'active' else 'danger' if sensor.status == 'error' else 'secondary' }}">
-                    {{ sensor.status|title }}
+                {% if sensor.id in recent_readings %}
+                    {% set current_status = recent_readings[sensor.id].status %}
+                {% else %}
+                    {% set current_status = sensor.status %}
+                {% endif %}
+                <span class="badge bg-{{ 'success' if current_status == 'active' else 'danger' if current_status == 'error' else 'secondary' }}">
+                    {{ current_status|title }}
                 </span>
             </div>
             
@@ -154,8 +159,13 @@
                         <strong>Type:</strong> {{ sensor.sensor_type }}<br>
                         <strong>Location:</strong> {{ sensor.location or 'Not specified' }}<br>
                         <strong>Last Updated:</strong> 
-                        <span class="last-update" data-timestamp="{{ sensor.last_reading_time }}">
-                            {% if sensor.last_reading_time %}
+                        {% if sensor.id in recent_readings %}
+                            {% set timestamp_value = recent_readings[sensor.id].timestamp %}
+                        {% else %}
+                            {% set timestamp_value = sensor.last_reading_time %}
+                        {% endif %}
+                        <span class="last-update" data-timestamp="{{ timestamp_value }}">
+                            {% if timestamp_value %}
                                 Loading...
                             {% else %}
                                 Never

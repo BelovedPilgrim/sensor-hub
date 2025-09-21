@@ -70,6 +70,14 @@ class SensorRegistry:
             self.register_discovery_handler('ltr329', self._discover_ltr329)
         except ImportError as e:
             logger.warning(f"LTR329 sensor not available: {e}")
+            
+        try:
+            # Import and register MPU6050
+            from sensor_hub.sensors.mpu6050 import MPU6050Sensor
+            self.register_sensor('mpu6050', MPU6050Sensor)
+            self.register_discovery_handler('mpu6050', self._discover_mpu6050)
+        except ImportError as e:
+            logger.warning(f"MPU6050 sensor not available: {e}")
     
     def discover_sensors(self) -> List[Dict[str, Any]]:
         """Discover all available sensors on the system."""
@@ -359,6 +367,152 @@ class SensorRegistry:
             logger.warning("smbus2 not available for LTR-329 discovery")
         except Exception as e:
             logger.debug(f"Error during LTR-329 discovery: {e}")
+        
+        return discovered_sensors
+
+    def _discover_mpu6050(self) -> List[Dict[str, Any]]:
+        """Discover MPU-6050 6-axis IMU sensors on I2C bus and MUX."""
+        discovered_sensors = []
+        
+        try:
+            import subprocess
+            import smbus2 as smbus
+            import time
+            
+            # Get list of devices on I2C bus 1
+            result = subprocess.run(['i2cdetect', '-y', '1'],
+                                    capture_output=True, text=True, timeout=10)
+            
+            if result.returncode != 0:
+                logger.warning("Could not run i2cdetect to scan for sensors")
+                return discovered_sensors
+            
+            # Parse i2cdetect output to find devices
+            output_lines = result.stdout.strip().split('\n')[1:]  # Skip header
+            detected_addresses = []
+            
+            for line in output_lines:
+                parts = line.split()
+                if len(parts) > 1:
+                    for addr_str in parts[1:]:  # Skip row label
+                        if addr_str != '--' and addr_str != 'UU':
+                            try:
+                                addr = int(addr_str, 16)
+                                detected_addresses.append(addr)
+                            except ValueError:
+                                pass
+            
+            addr_list = [hex(addr) for addr in detected_addresses]
+            logger.debug(f"Detected I2C addresses: {addr_list}")
+            
+            # Look for MPU-6050 at standard addresses (0x68, 0x69)
+            mpu6050_addresses = [0x68, 0x69]
+            
+            # First check for direct connections
+            for addr in detected_addresses:
+                if addr in mpu6050_addresses:
+                    # Try to verify it's actually an MPU-6050
+                    try:
+                        bus = smbus.SMBus(1)
+                        # Try to read the WHO_AM_I register
+                        who_am_i = bus.read_byte_data(addr, 0x75)
+                        bus.close()
+                        
+                        # Verify it's an MPU-6050 (WHO_AM_I should be 0x68)
+                        if who_am_i == 0x68:
+                            discovered_sensors.append({
+                                'sensor_id': f'mpu6050_{addr:02x}',
+                                'name': f'MPU-6050 IMU Sensor (0x{addr:02x})',
+                                'config': {
+                                    'i2c_address': addr,
+                                    'bus_number': 1
+                                },
+                                'location': 'I2C Direct',
+                                'description': ('6-axis accelerometer '
+                                                'and gyroscope')
+                            })
+                            
+                            logger.info(
+                                f"Discovered MPU-6050 sensor at 0x{addr:02x}"
+                            )
+                        
+                    except OSError:
+                        logger.debug(
+                            f"Device at 0x{addr:02x} is not an MPU-6050"
+                        )
+            
+            # Check multiplexer channels for MPU-6050 sensors
+            multiplexer_addresses = [
+                0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77
+            ]
+            
+            for mux_addr in detected_addresses:
+                if mux_addr in multiplexer_addresses:
+                    logger.debug(f"Scanning MUX 0x{mux_addr:02x} for MPU-6050")
+                    
+                    try:
+                        bus = smbus.SMBus(1)
+                        
+                        # Scan each channel (0-7)
+                        for channel in range(8):
+                            try:
+                                # Select channel
+                                bus.write_byte(mux_addr, 1 << channel)
+                                time.sleep(0.01)
+                                
+                                # Check for MPU-6050 at standard addresses
+                                for mpu_addr in mpu6050_addresses:
+                                    try:
+                                        who_am_i = bus.read_byte_data(
+                                            mpu_addr, 0x75)
+                                        
+                                        # Verify WHO_AM_I = 0x68
+                                        if who_am_i == 0x68:
+                                            sensor_id = (
+                                                f'mpu6050_{mux_addr:02x}_'
+                                                f'{channel}_{mpu_addr:02x}')
+                                            discovered_sensors.append({
+                                                'sensor_id': sensor_id,
+                                                'name': (f'MPU-6050 IMU '
+                                                        f'(MUX 0x{mux_addr:02x} '
+                                                        f'Ch{channel})'),
+                                                'config': {
+                                                    'i2c_address': mpu_addr,
+                                                    'bus_number': 1,
+                                                    'mux_address': mux_addr,
+                                                    'mux_channel': channel
+                                                },
+                                                'location': (f'PCA9548 0x{mux_addr:02x} '
+                                                            f'Channel {channel}'),
+                                                'description': ('6-axis '
+                                                               'accelerometer '
+                                                               'and gyroscope '
+                                                               'via multiplexer')
+                                            })
+                                            
+                                            logger.info(
+                                                f"Discovered MPU-6050 on MUX "
+                                                f"0x{mux_addr:02x} channel "
+                                                f"{channel} at 0x{mpu_addr:02x}"
+                                            )
+                                    
+                                    except OSError:
+                                        pass  # No MPU-6050 at this address
+                                        
+                            except OSError:
+                                pass  # Error accessing this channel
+                        
+                        # Reset multiplexer (disable all channels)
+                        bus.write_byte(mux_addr, 0x00)
+                        bus.close()
+                        
+                    except Exception as e:
+                        logger.debug(f"Error scanning MUX 0x{mux_addr:02x}: {e}")
+                        
+        except ImportError:
+            logger.warning("smbus2 not available for MPU-6050 discovery")
+        except Exception as e:
+            logger.debug(f"Error during MPU-6050 discovery: {e}")
         
         return discovered_sensors
 

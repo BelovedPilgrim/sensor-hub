@@ -107,19 +107,26 @@ const SensorHub = {
 
     // Load initial sensor data from template
     loadInitialSensorData: function() {
+        console.log('SensorHub: Loading initial sensor data...');
         const sensorCards = document.querySelectorAll('.sensor-card');
-        sensorCards.forEach(card => {
+        console.log('SensorHub: Found', sensorCards.length, 'sensor cards');
+        
+        sensorCards.forEach((card, index) => {
+            console.log('SensorHub: Processing card', index, 'with ID:', card.dataset.sensorId);
             const rawDataScript = card.querySelector('.sensor-raw-data');
+            
             if (rawDataScript) {
                 try {
                     const rawData = JSON.parse(rawDataScript.textContent);
-                    console.log('Loading initial data for sensor:', card.dataset.sensorId, rawData);
+                    console.log('SensorHub: Raw data for', card.dataset.sensorId, ':', rawData);
                     this.updateSensorDataDisplay(card, rawData);
-                    // Remove the script tag as it's no longer needed
                     rawDataScript.remove();
+                    console.log('SensorHub: Successfully updated display for', card.dataset.sensorId);
                 } catch (error) {
-                    console.error('Error parsing initial sensor data:', error);
+                    console.error('SensorHub: Error parsing sensor data for', card.dataset.sensorId, ':', error);
                 }
+            } else {
+                console.log('SensorHub: No raw data script found for card', card.dataset.sensorId);
             }
         });
     },
@@ -132,17 +139,26 @@ const SensorHub = {
             console.log(`Found sensor card for: ${sensorId}`);
             this.setLoadingState(sensorCard, true);
             
-            fetch(`${this.config.apiEndpoint}/sensors/${sensorId}`)
+            // Fetch current sensor data for all sensors and filter by sensorId
+            fetch(`${this.config.apiEndpoint}/sensors/current`)
                 .then(response => {
-                    console.log(`API response for ${sensorId}:`, response.status);
+                    console.log(`API response for current sensors:`, response.status);
                     return response.json();
                 })
                 .then(data => {
-                    console.log(`Data received for ${sensorId}:`, data);
-                    if (data.status === 'success') {
-                        this.updateSensorCard(sensorCard, data.sensor);
+                    console.log(`Current sensors data received:`, data);
+                    if (data.sensors) {
+                        // Find the specific sensor in the response
+                        const sensorData = data.sensors.find(s => s.sensor_id === sensorId);
+                        if (sensorData) {
+                            console.log(`Data found for ${sensorId}:`, sensorData);
+                            this.updateSensorCard(sensorCard, sensorData);
+                        } else {
+                            console.warn(`No data found for sensor ${sensorId}`);
+                            this.showError(`No data available for sensor ${sensorId}`);
+                        }
                     } else {
-                        this.showError(`Failed to refresh sensor ${sensorId}: ${data.error}`);
+                        this.showError(`Invalid response format from sensors API`);
                     }
                 })
                 .catch(error => {
@@ -193,29 +209,56 @@ const SensorHub = {
 
         // Update last reading time
         const lastUpdate = card.querySelector('.last-update');
-        if (lastUpdate && sensorData.last_reading_time) {
-            lastUpdate.setAttribute('data-timestamp', sensorData.last_reading_time);
+        if (lastUpdate && sensorData.latest_reading) {
+            // Get timestamp from the API response
+            let timestamp_value = sensorData.latest_reading.timestamp;
             
-            try {
-                // Parse as UTC timestamp using helper function
-                const timestamp = this.parseUTCTimestamp(sensorData.last_reading_time);
-                if (isNaN(timestamp.getTime())) {
-                    console.error('Invalid timestamp:', sensorData.last_reading_time);
-                    lastUpdate.textContent = 'Invalid time';
-                } else {
-                    lastUpdate.textContent = this.formatTimeAgo(timestamp);
-                    // Add a title showing the full time in selected timezone
-                    lastUpdate.title = `Last reading: ${this.formatTimestampInTimezone(sensorData.last_reading_time, this.config.timezone)}`;
+            if (timestamp_value) {
+                lastUpdate.setAttribute('data-timestamp', timestamp_value);
+                
+                try {
+                    let timestamp;
+                    // Handle different timestamp formats
+                    if (typeof timestamp_value === 'number') {
+                        // Unix timestamp (e.g., from LTR329/MPU6050)
+                        timestamp = new Date(timestamp_value * 1000);
+                    } else {
+                        // ISO string or other format (e.g., from BME280)
+                        timestamp = this.parseUTCTimestamp(timestamp_value);
+                    }
+                    
+                    if (isNaN(timestamp.getTime())) {
+                        console.error('Invalid timestamp:', timestamp_value);
+                        lastUpdate.textContent = 'Invalid time';
+                    } else {
+                        lastUpdate.textContent = this.formatTimeAgo(timestamp);
+                        // Add a title showing the full time in selected timezone
+                        lastUpdate.title = `Last reading: ${this.formatTimestampInTimezone(timestamp_value, this.config.timezone)}`;
+                    }
+                } catch (error) {
+                    console.error('Error parsing timestamp:', error, timestamp_value);
+                    lastUpdate.textContent = 'Time parse error';
                 }
-            } catch (error) {
-                console.error('Error parsing timestamp:', error, sensorData.last_reading_time);
-                lastUpdate.textContent = 'Time parse error';
             }
         }
 
         // Update sensor data if available
-        if (sensorData.latest_reading && sensorData.latest_reading.data) {
-            this.updateSensorDataDisplay(card, sensorData.latest_reading.data);
+        if (sensorData.latest_reading) {
+            // Handle different API response formats
+            let data;
+            if (sensorData.latest_reading.data) {
+                // BME280 format: data is nested in .data field
+                data = sensorData.latest_reading.data;
+            } else {
+                // LTR329/MPU6050 format: data is directly in latest_reading
+                data = sensorData.latest_reading;
+                // Remove metadata fields to keep only sensor values
+                const metadataFields = ['timestamp', 'sensor_id', 'sensor_type', 'status'];
+                data = Object.fromEntries(
+                    Object.entries(data).filter(([key]) => !metadataFields.includes(key))
+                );
+            }
+            this.updateSensorDataDisplay(card, data);
         }
     },
 
@@ -280,10 +323,24 @@ const SensorHub = {
                     relevantFields[field] = data[field];
                 }
             });
+        } else if (sensorType === 'mpu6050') {
+            // MPU6050 shows accelerometer, gyroscope, and temperature
+            if (data.temperature !== null && data.temperature !== undefined) {
+                relevantFields.temperature = data.temperature;
+            }
+            if (data.accel_x !== null && data.accel_x !== undefined) {
+                relevantFields.accel_x = data.accel_x;
+            }
+            if (data.accel_y !== null && data.accel_y !== undefined) {
+                relevantFields.accel_y = data.accel_y;
+            }
+            if (data.accel_z !== null && data.accel_z !== undefined) {
+                relevantFields.accel_z = data.accel_z;
+            }
         } else {
             // For unknown sensor types, show all non-null fields
             Object.entries(data).forEach(([key, value]) => {
-                if (value !== null && value !== undefined) {
+                if (value !== null && value !== undefined && key !== 'timestamp') {
                     relevantFields[key] = value;
                 }
             });
@@ -300,7 +357,13 @@ const SensorHub = {
             pressure: (v) => this.formatPressure(parseFloat(v)),
             dew_point: (v) => this.formatTemperature(parseFloat(v)),
             light_level: (v) => `${Math.round(parseFloat(v))}`, // Raw CH0 value
-            ir_level: (v) => `${Math.round(parseFloat(v))}`    // Raw CH1 value
+            ir_level: (v) => `${Math.round(parseFloat(v))}`,    // Raw CH1 value
+            accel_x: (v) => `${parseFloat(v).toFixed(2)}g`,
+            accel_y: (v) => `${parseFloat(v).toFixed(2)}g`,
+            accel_z: (v) => `${parseFloat(v).toFixed(2)}g`,
+            gyro_x: (v) => `${parseFloat(v).toFixed(1)}°/s`,
+            gyro_y: (v) => `${parseFloat(v).toFixed(1)}°/s`,
+            gyro_z: (v) => `${parseFloat(v).toFixed(1)}°/s`
         };
         
         return formatters[key] ? formatters[key](value) : value;
@@ -314,7 +377,13 @@ const SensorHub = {
             pressure: 'Pressure',
             dew_point: 'Dew Point',
             light_level: 'CH0 (Visible+IR)',
-            ir_level: 'CH1 (IR Only)'
+            ir_level: 'CH1 (IR Only)',
+            accel_x: 'Accel X',
+            accel_y: 'Accel Y', 
+            accel_z: 'Accel Z',
+            gyro_x: 'Gyro X',
+            gyro_y: 'Gyro Y',
+            gyro_z: 'Gyro Z'
         };
 
         return labels[key] || key.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
@@ -419,7 +488,17 @@ const SensorHub = {
 
     // Format timestamp for display in selected timezone
     formatTimestampInTimezone: function(timestamp, timezone) {
-        const date = this.parseUTCTimestamp(timestamp);
+        let date;
+        // Handle different timestamp formats
+        if (typeof timestamp === 'string' && (timestamp.includes('-') || timestamp.includes('T'))) {
+            // ISO string format
+            date = this.parseUTCTimestamp(timestamp);
+        } else {
+            // Unix timestamp format (string or number)
+            const timestampNum = typeof timestamp === 'string' ? parseFloat(timestamp) : timestamp;
+            date = new Date(timestampNum * 1000);
+        }
+        
         if (isNaN(date.getTime())) {
             return 'Invalid time';
         }
@@ -456,14 +535,35 @@ const SensorHub = {
     updateStatusIndicators: function() {
         // Update time displays that are already on the page
         const timeElements = document.querySelectorAll('.last-update[data-timestamp]');
+        
         timeElements.forEach(element => {
             const timestamp = element.getAttribute('data-timestamp');
-            if (timestamp) {
-                // Parse as UTC timestamp using helper function
-                const date = this.parseUTCTimestamp(timestamp);
-                element.textContent = this.formatTimeAgo(date);
-                // Update title with full local time
-                element.title = `Last reading: ${this.formatLocalTimestamp(timestamp)}`;
+            if (timestamp && timestamp !== 'None' && timestamp !== 'null') {
+                try {
+                    let date;
+                    // Handle different timestamp formats
+                    if (timestamp.includes('-') || timestamp.includes('T')) {
+                        // ISO string format (e.g., "2025-09-21T15:30:00")
+                        date = this.parseUTCTimestamp(timestamp);
+                    } else {
+                        // Unix timestamp format (e.g., "1758468569.7065759")
+                        const timestampNum = parseFloat(timestamp);
+                        if (isNaN(timestampNum)) {
+                            throw new Error('Invalid timestamp number');
+                        }
+                        date = new Date(timestampNum * 1000);
+                    }
+                    
+                    if (date && !isNaN(date.getTime())) {
+                        element.textContent = this.formatTimeAgo(date);
+                    } else {
+                        element.textContent = 'Invalid time';
+                    }
+                } catch (error) {
+                    element.textContent = 'Parse error';
+                }
+            } else {
+                element.textContent = 'No timestamp';
             }
         });
     },
@@ -565,9 +665,23 @@ const SensorHub = {
             if (lastUpdate) {
                 const timestamp = lastUpdate.getAttribute('data-timestamp');
                 if (timestamp) {
-                    const date = this.parseUTCTimestamp(timestamp);
-                    lastUpdate.textContent = this.formatTimeAgo(date);
-                    lastUpdate.title = `Last reading: ${this.formatTimestampInTimezone(timestamp, this.config.timezone)}`;
+                    let date;
+                    // Handle different timestamp formats
+                    if (timestamp.includes('-') || timestamp.includes('T')) {
+                        // ISO string format
+                        date = this.parseUTCTimestamp(timestamp);
+                    } else {
+                        // Unix timestamp format
+                        const timestampNum = parseFloat(timestamp);
+                        date = new Date(timestampNum * 1000);
+                    }
+                    
+                    if (!isNaN(date.getTime())) {
+                        lastUpdate.textContent = this.formatTimeAgo(date);
+                        lastUpdate.title = `Last reading: ${this.formatTimestampInTimezone(timestamp, this.config.timezone)}`;
+                    } else {
+                        lastUpdate.textContent = 'Invalid time';
+                    }
                 }
             }
         });
